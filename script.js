@@ -9,23 +9,21 @@ let trainer = {
 		hoenn: ['May', 'Max'],
 		kanto: ['Brock', 'Misty']
 	},
-	talk: function(pokemone){
-	let pokemonName = trainer.pokemon.forEach(function(pokemone){
-		return(trainer.pokemon == pokemone)
-	})
-	console.log(pokemonName);
-	console.log(pokemonName + "! I choose you!");
+	talk: function(pokemon){
+	let pokemonName = trainer.pokemon.indexOf(pokemon);
+	console.log(trainer.pokemon[pokemonName] + "! I choose you!");
 		
 	}
 }
 
 // 5. Access the "trainer" object properties using dot and square bracket notation.
-console.log('Result of dot notation:')
+console.log('Result of dot notation:');
 console.log(trainer.name);
-console.log('Result of bracket notation')
+console.log('Result of bracket notation');
+console.log(trainer['pokemon']);
 
 // 6. Invoke/call the "trainer" object method.
-
+console.log(trainer.talk('Charizard'));
 // 7. Create a constructor function for creating a pokemon.
 
 function Pokemon(name, level){
@@ -38,19 +36,21 @@ function Pokemon(name, level){
 	//Methods
 	this.tackle = function(target){
 		console.log(this.name + ' tackled ' + target.name);
-		healthLeft = target.health - this.attack;
-		console.log(target.name " health is now reduced to " + healthLeft);
+		let healthLeft = target.health - this.attack;
+		console.log(target.name + "\'s health is now reduced to " + healthLeft);
+		if(healthLeft <= 0) {
+			console.log(target.name + " fainted");
+		}
 	};	
-	this.faint = function(){
-		console.log(this.name + " fainted.");
-	}
 }
+
 // 8. Create/instantiate several pokemon using the "constructor" function.
 let pikachu = new Pokemon("Pikachu", 16);
-let rattata = new Pokemon("Rattata", 8);
-let torchic = new Pokemon("Torchic", 10);
-let geodude = new Pokemon("Geodude", 10);
+let rattata = new Pokemon("Rattata", 22);
+let torchic = new Pokemon("Torchic", 33);
+let geodude = new Pokemon("Geodude", 67);
 
 // 9. Have the pokemon objects interact with each other by calling on the "tackle" method.
 console.log(Pokemon);
 pikachu.tackle(rattata);
+geodude.tackle(pikachu);
